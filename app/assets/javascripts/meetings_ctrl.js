@@ -7,6 +7,24 @@
         $scope.meetings = response.data;
       });
     };
-    $scope.message = "Hello World";
+
+    $scope.sortBy = function(inputAttribute) {
+      if (inputAttribute !== $scope.orderAttribute) {
+        $scope.isDescending = false;
+      } else {
+        $scope.isDescending = !$scope.isDescending;
+      }
+      $scope.orderAttribute = inputAttribute;
+    };
+
+    $scope.createMeeting = function(inputName, inputAddress) {
+      var params = {
+        name: inputName,
+        address: inputAddress
+      };
+      $http.post('/api/v1/meetings.json', params).then(function(response) {
+        $scope.meetings.push(response.data);
+      });
+    }
   });
 }());

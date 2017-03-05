@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get '/meetings', to: 'meetings#index'
+      post '/meetings', to: 'meetings#create'
+      get '/meetings/:id', to: 'meetings#show'
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.
